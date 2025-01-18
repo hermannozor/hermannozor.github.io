@@ -28,3 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// Récupérer l'élément burger et le menu
+const burger = document.getElementById('burger-menu');
+const menu = document.querySelector('nav ul');
+
+// Ajouter l'événement de clic au bouton burger
+burger.addEventListener('click', function() {
+    menu.classList.toggle('active'); // Toggle la classe "active" pour afficher/masquer le menu
+});
