@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTC - Votre Chauffeur Privé</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <!-- Charger jQuery en premier -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.0.1/dist/fullcalendar.min.js"></script>
+    <!-- Ensuite charger FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+
+</head>
+
+<body>
+   <!--<div class="promo-banner">--> 
+    <!--<p>Profitez de 10% de réduction sur votre première réservation !</p>-->
+    <!--</div>-->    
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#booking">Réservation</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Bienvenue chez Votre Chauffeur Privé</h1>
+        <p>Des trajets confortables et fiables, où que vous soyez.</p>
+        <a href="#booking" class="cta-btn">Réserver maintenant</a>
+        <!-- Crédit photo -->
+        <!-- <p class="photo-credit">Photo par <a href="https://unsplash.com/fr/@thibaultpenin?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Thibault Penin</a> sur <a href="https://unsplash.com/fr/photos/homme-en-veste-noire-conduisant-une-voiture-pendant-la-journee-a8r2KKLSntA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></p>-->
+      
+    </section>
+
+    <section id="services">
+        <h2>Nos Services</h2>
+        <div class="service">
+            <i class="fas fa-plane-departure"></i>
+            <h3>Transferts aéroport</h3>
+            <p>Nous assurons vos trajets depuis et vers les aéroports, en toute sérénité.</p>
+        </div>
+        <div class="service">
+            <i class="fas fa-car"></i>
+            <h3>Longues distances</h3>
+            <p>Voyagez confortablement pour vos déplacements professionnels ou privés.</p>
+        </div>
+        <div class="service">
+            <i class="fas fa-crown"></i>
+            <h3>Événements</h3>
+            <p>Arrivez avec élégance à vos mariages, soirées ou rendez-vous importants.</p>
+        </div>
+    </section>
+
+    <section id="about-us">
+        <h2>À propos de nous</h2>
+        <p>Chez <strong>SmartMove Pro</strong>, nous sommes bien plus qu'un simple service de transport. Nous sommes animés par la passion de rendre chaque trajet non seulement efficace, mais aussi agréable et fluide. Fondée par un groupe d'experts dans le domaine du transport, notre entreprise de VTC s'engage à offrir un service haut de gamme, alliant confort, sécurité, et ponctualité à chaque course.</p>
+
+        <!--<h2 style="color: #333; font-weight: bold; font-size: 1.5rem;">Notre Mission</h2>
+        <p>Chez SmartMove Pro, notre mission est simple : offrir à chaque client une expérience de transport exceptionnelle. Nous mettons tout en œuvre pour vous garantir un service personnalisé, répondant parfaitement à vos besoins. Que vous voyagiez pour affaires ou pour le plaisir, nous nous engageons à respecter vos horaires et à vous assurer un confort optimal, tout en garantissant une conduite sûre et agréable, à chaque instant.</p>
+
+        <h2 style="color: #333; font-weight: bold; font-size: 1.5rem;">Nos Chauffeurs</h2>
+        <p>Nos chauffeurs sont le cœur de notre service. Sélectionnés avec soin, formés et expérimentés, ils sont bien plus que de simples conducteurs : ils sont des ambassadeurs de notre entreprise. Grâce à leur connaissance approfondie des routes et des conditions de circulation, ils sont capables de vous offrir un trajet rapide, fluide, et sécurisé. Leur professionnalisme, leur courtoisie, et leur discrétion sont les garanties d'une expérience de voyage agréable et sans stress.</p>
+
+        <h2 style="color: #333; font-weight: bold; font-size: 1.5rem;">Notre Flotte</h2>
+        <p><strong>SmartMove Pro</strong> dispose d'une flotte moderne et soigneusement entretenue, composée de véhicules confortables et élégants. Chaque voiture est équipée des dernières technologies et offre toutes les commodités nécessaires pour rendre votre trajet aussi agréable que possible. Que vous ayez besoin d'une voiture standard pour un déplacement quotidien ou d'un véhicule haut de gamme pour un événement spécial, nous avons le véhicule parfait pour chaque situation.</p>-->
+
+        <h2 style="color: #333; font-weight: bold; font-size: 1.5rem;">Pourquoi Choisir SmartMove Pro ?</h2>
+        <ul style="font-size: 1.1rem; line-height: 1.6;">
+            <li><strong>Ponctualité :</strong> Nous savons que votre temps est précieux. C'est pourquoi nous nous engageons à être toujours à l'heure et à vous garantir un service rapide et efficace.</li>
+            <!--<li><strong>Confort :</strong> Nous mettons un point d'honneur à offrir des véhicules impeccables, spacieux et confortables, pour que chaque trajet soit un moment de détente et de bien-être.</li>
+            <li><strong>Service Personnalisé :</strong> Nous comprenons que chaque client est unique. C'est pourquoi nous proposons un service sur mesure, adapté à vos besoins spécifiques, que ce soit pour un trajet quotidien, une réunion d'affaires ou un événement spécial.</li>-->
+            <li><strong>Disponibilité :</strong> Avec SmartMove Pro, vous pouvez réserver votre trajet à tout moment. Nous nous engageons à vous prendre en charge rapidement, où que vous soyez, pour vous garantir une prise en charge efficace et rapide.</li>
+        </ul>
+
+        <!--<p><strong>Chez SmartMove Pro, nous croyons fermement que chaque trajet mérite d'être une expérience agréable et mémorable. Rejoignez-nous pour découvrir un service de transport de qualité supérieure, où confort, sécurité et professionnalisme se rencontrent à chaque kilomètre.</strong></p>-->
+
+    </section>
+
+    <section id="booking">
+        <h2>Réserver un trajet</h2>
+        <form action="/book-ride" method="POST" onsubmit="handleBookingSubmit(event)">
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v8m-4-4h8" />
+                </svg>
+                <input type="text" id="pickup" name="pickup" placeholder="Lieu de départ" required>
+            </div>
+
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l3 2 3-2v13l-3-2-3 2z" />
+                </svg>
+                <input type="text" id="destination" name="destination" placeholder="Destination" required>
+            </div>
+
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m-9 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m8-7a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <input type="time" id="time" name="time" required>
+            </div>
+
+            <button type="submit">Réserver</button>
+        </form>
+
+        <div id="confirmation-message"></div>
+    </section>
+
+    
+    <section id="testimonials">
+        <h2>Ce que nos clients disent</h2>
+        <div class="testimonial">
+            <button class="toggle-testimonial">Voir le témoignage 1</button>
+            <p class="testimonial-text">"J'ai utilisé ce service de VTC pour mes déplacements professionnels et je suis absolument ravi de la qualité du service. Le chauffeur était ponctuel, courtois et la voiture était impeccable. Le trajet s'est déroulé dans le plus grand confort et en toute sécurité. Je recommande vivement cette entreprise pour ceux qui recherchent un service fiable et haut de gamme." - Pierre, consultant en stratégie</p>
+        </div>
+        <div class="testimonial">
+            <button class="toggle-testimonial">Voir le témoignage 2</button>
+            <p class="testimonial-text">"En tant que frequent traveler, je cherche toujours un service VTC qui combine confort et professionnalisme. Ce site de chauffeurs VTC répond à toutes mes attentes : réservation facile, chauffeurs agréables et véhicules modernes. Je me sens toujours pris en charge avec une grande attention aux détails. Un service à la hauteur de mes exigences, je ne prendrais jamais un autre transport." - Bernard, Directeur marketing</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <form action="/send-message" method="POST">
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v8m-4-4h8" />
+                </svg>
+                <input type="text" id="name" name="name" placeholder="Nom" required>
+            </div>
+    
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l3 2 3-2v13l-3-2-3 2z" />
+                </svg>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+    
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m-9 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <textarea id="message" name="message" placeholder="Votre message" rows="5" required></textarea>
+            </div>
+    
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>    
+
+    <footer>
+        <p>&copy; 2025 Votre Chauffeur Privé. Tous droits réservés.</p>
+    </footer>
+
+    <script src="scripts.js">
+        const buttons = document.querySelectorAll('.toggle-testimonial');
+    buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        const text = this.nextElementSibling;
+        text.style.display = text.style.display === 'block' ? 'none' : 'block';
+    });
+});
+    </script>
+</body>
+
+</html>
+
