@@ -237,7 +237,7 @@ header {
 }
 
 .cta-btn::after {
-  /*  content: '';*/
+    content: 'Réserver maintenant';
     position: absolute;
     top: 0;
     left: 0;

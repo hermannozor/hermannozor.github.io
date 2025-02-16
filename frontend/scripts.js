@@ -38,3 +38,46 @@ const menu = document.querySelector('nav ul');
 burger.addEventListener('click', function() {
     menu.classList.toggle('active'); // Toggle la classe "active" pour afficher/masquer le menu
 });
+
+// Fonction de gestion de l'auto-complétion
+async function initAutocomplete() {
+    const inputs = document.querySelectorAll("input[name='pickup'], input[name='destination']");
+
+    if (!inputs.length) {
+        console.error("Aucun champ d'adresse trouvé.");
+        return;
+    }
+
+    const options = {
+        componentRestrictions: { country: "fr" },
+        types: ["address"],
+    };
+
+    inputs.forEach(input => {
+        const autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace();
+            if (!place.geometry) {
+                console.error("Aucune information géographique disponible pour ce lieu.");
+                return;
+            }
+            console.log(`Lieu sélectionné pour ${input.name} :`, place);
+        });
+    });
+}
+
+function loadGoogleMapsScript() {
+    if (window.google && window.google.maps) {
+        console.log("Google Maps API déjà chargée.");
+        initAutocomplete();
+        return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB99hOYVLYTAzs-gZ2dJ1THquaJszhn-GY&libraries=places&callback=initAutocomplete";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+}
+
+window.addEventListener("load", loadGoogleMapsScript);

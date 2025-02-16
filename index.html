@@ -9,9 +9,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <!-- Charger jQuery en premier -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.0.1/dist/fullcalendar.min.js"></script>
-    <!-- Ensuite charger FullCalendar -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.10.2/dist/fullcalendar.min.js"></script>
+    
+    <!-- <script>
+        const googleMapsApiKey = "AIzaSyDoc9ixSk3UB8WRWhcsdi_E4BvQFEdgy_U";
+        const script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&libraries=places";
+        document.head.appendChild(script);
+    </script>-->
 
 </head>
 
@@ -111,6 +117,27 @@
     <section id="booking">
         <h2>Réserver un trajet</h2>
         <form action="/book-ride" method="POST" onsubmit="handleBookingSubmit(event)">
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v8m-4-4h8" />
+                </svg>
+                <input type="text" id="name" name="name" placeholder="Prénom & Nom" required>
+            </div>
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v8m-4-4h8" />
+                </svg>
+                <input type="email" id="email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+            <div class="form-group">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 14v8m-4-4h8" />
+                </svg>
+                <input type="tel" id="phone" name="phone" placeholder="Tel" required pattern="^(\+33|0)[1-9](\d{8})$" >
+            </div>
             <div class="form-group">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />
