@@ -16,10 +16,18 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const errorHandler = require('./middlewares/errorHandler');
 
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client("994469700771-105vvgfbiktrrde40324g0m4vguloqbc.apps.googleusercontent.com");
+
+
 const app = express();
 
 // Middleware global
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5500', // Remplace par ton domaine
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Routes
@@ -31,24 +39,26 @@ app.use(errorHandler);
 
 const router = express.Router();
 
-router.get('/autocomplete', async (req, res) => {
-    const { input } = req.query;
-    if (!input) return res.status(400).json({ error: "Paramètre 'input' requis" });
+app.post("/verify-token", async (req, res) => {
+    const { id_token } = req.body;
 
     try {
-        const response = await axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json`, {
-            params: {
-                input,
-                key: process.env.GOOGLE_MAPS_API_KEY
-            }
+        const ticket = await client.verifyIdToken({
+            idToken: id_token,
+            audience: "994469700771-105vvgfbiktrrde40324g0m4vguloqbc.apps.googleusercontent.com",
         });
-        res.json(response.data);
+
+        const payload = ticket.getPayload();
+        console.log("Utilisateur authentifié :", payload);
+
+        res.json({ success: true, name: payload.name, email: payload.email });
     } catch (error) {
-        res.status(500).json({ error: "Erreur lors de la requête Google Maps" });
+        console.error("Erreur de vérification :", error);
+        res.status(401).json({ success: false, message: "Token invalide" });
     }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`✅ Serveur démarré sur le port ${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

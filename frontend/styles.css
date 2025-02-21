@@ -650,3 +650,7 @@ footer {
     background-color: #ddd;
     margin: 20px 0;
 }
+
+.g_id_signin {
+    width: 100px !important; /* Ajuste la largeur selon ton besoin */
+}
