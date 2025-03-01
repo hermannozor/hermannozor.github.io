@@ -3,26 +3,6 @@ const CLIENT_ID = window.CONFIG.GOOGLE_CLIENT_ID;
 const API_KEY = window.CONFIG.GOOGLE_API_KEY;
 const SCOPES = window.CONFIG.GOOGLE_SCOPES;
 
-function handleBookingSubmit(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const date = document.getElementById('date').value;
-    const destination = document.getElementById('destination').value;
-
-    if (name && date && destination) {
-        const confirmationMessage = `
-            <h3>Réservation confirmée</h3>
-            <p><strong>Nom :</strong> ${name}</p>
-            <p><strong>Date et Heure :</strong> ${date}</p>
-            <p><strong>Destination :</strong> ${destination}</p>
-            <p>Merci pour votre réservation, nous vous contacterons bientôt.</p>
-        `;
-        document.getElementById('confirmation-message').innerHTML = confirmationMessage;
-    } else {
-        document.getElementById('confirmation-message').innerHTML = '<p style="color: red;">Veuillez remplir tous les champs.</p>';
-    }
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.toggle-testimonial');
@@ -111,28 +91,6 @@ function initClient() {
     });
 }
 
-//Système de notification après la soumission du formulaire de réservation
-function handleBookingSubmit(event) {
-    event.preventDefault();
-    
-    const form = event.target;
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-        method: form.method,
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("confirmation-message").innerHTML = 
-            `<p style="color: green;">Réservation confirmée ! Vous recevrez un email de confirmation.</p>`;
-    })
-    .catch(error => {
-        console.error("Erreur lors de la réservation :", error);
-        document.getElementById("confirmation-message").innerHTML = 
-            `<p style="color: red;">Une erreur est survenue. Veuillez réessayer.</p>`;
-    });
-}  
 
 // Récupérer les éléments de la page
 const signOutBtn = document.getElementById("signout-btn");
@@ -207,38 +165,6 @@ signOutBtn.addEventListener("click", () => {
 }
 
 
-function handleDateChange() {
-    const dateInput = document.getElementById('date');
-    const selectedDate = dateInput.value;
-    const selectedDay = new Date(selectedDate).getDay(); // 0 = Dimanche, 1 = Lundi, ..., 6 = Samedi
-    
-    if (selectedDay >= 1 && selectedDay <= 4) { // Bloque lundi (1) à jeudi (4)
-        alert("⚠️ Sélection invalide ! \nLes réservations sont disponibles le vendredi soir, ainsi que toute la journée du samedi et du dimanche. \nPour une réservation en soirée en semaine, veuillez nous contacter via notre formulaire. \nMerci pour votre compréhension !");
-        dateInput.value = ""; // Réinitialise la sélection
-        return;
-    }
-    
-    console.log("Date value:", selectedDate);
-    if (selectedDate) {
-        fetch('https://smartmovepro.fr/get-events', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('google_access_token')}`,
-            },
-            body: JSON.stringify({ date: selectedDate }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Événements récupérés:", data);
-        })
-        .catch(error => {
-            console.error("Erreur:", error);
-        });
-    }
-}
-document.getElementById('date').addEventListener('change', handleDateChange);
-    
 
 // Met à jour l'attribut 'min' avec la date du jour pour empêcher la sélection des dates passées
 document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);

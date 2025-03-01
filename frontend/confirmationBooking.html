@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Confirmation d'envoi</title>
+    <style>
+
+
+        .confirmMail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #219150;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+         <nav>
+        <div class="logo">
+            <a href="/index.html" style="color: white; font-size: 1.5em; text-decoration: none;">Logo</a>
+        </div>
+    
+            <ul class="nav-links">
+                <li><a href="/index.html#home">Accueil</a></li>
+                <li><a href="/index.html#services">Services</a></li>
+                <li><a href="/index.html#about-us">À propos</a></li>
+                <li><a href="/index.html#booking">Réservation</a></li>
+                <li><a href="/index.html#contact">Contact</a></li>
+            </ul>
+            <div class="burger" id="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+    </header>
+    
+    <section class="confirmMail">
+        <div class="container">
+            <h1>Merci pour votre réservation!</h1>
+            <p>Nous avons bien reçu votre demande de réservation. Nous vous contacterons prochainement pour sa confirmation.</p>
+            <a href="/index.html" class="btn">Retour à l'accueil</a>
+        </div>
+    </section>
+    <script>
+        // Récupérer l'élément burger et le menu
+        const burger = document.getElementById('burger-menu');
+        const menu = document.querySelector('nav ul');
+        
+        // Ajouter l'événement de clic au bouton burger
+        burger.addEventListener('click', function() {
+            menu.classList.toggle('active'); // Toggle la classe "active" pour afficher/masquer le menu
+        });
+    </script>
+</body>
+</html>
