@@ -190,3 +190,23 @@ function initGoogleAPI() {
   window.onload = function () {
     document.querySelectorAll("form").forEach(form => form.reset());
   };
+
+
+    //toggle-testimonial
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".toggle-testimonial");
+    
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const testimonialText = this.nextElementSibling;
+                
+                if (testimonialText.style.display === "none" || testimonialText.style.display === "") {
+                    testimonialText.style.display = "block";
+                    this.textContent = "Masquer le témoignage";
+                } else {
+                    testimonialText.style.display = "none";
+                    this.textContent = "Voir le témoignage";
+                }
+            });
+        });
+    });
