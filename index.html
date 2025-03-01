@@ -3,13 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' 
-    blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' 
-    blob: data: gap: https://www.gstatic.com https://accounts.google.com; object-src * 'self' blob: data: gap:;
-    img-src * self 'unsafe-inline' blob: data: gap: https://www.gstatic.com https://accounts.google.com; 
-    connect-src self * 'unsafe-inline' blob: data: gap: https://www.gstatic.com https://accounts.google.com; 
-    frame-src * self blob: data: gap: https://www.gstatic.com https://accounts.google.com;">
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' blob: data: gap:; style-src * 'self' 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap: https://www.gstatic.com https://accounts.google.com; object-src * 'self' blob: data: gap:; img-src * 'self' 'unsafe-inline' blob: data: gap: https://www.gstatic.com https://accounts.google.com; connect-src 'self' * 'unsafe-inline' blob: data: gap: https://www.gstatic.com https://accounts.google.com; frame-src * 'self' blob: data: gap: https://www.gstatic.com https://accounts.google.com;">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VTC - Votre Chauffeur Privé</title>
     <link rel="stylesheet" href="frontend/styles.css">
@@ -33,7 +28,7 @@
     <header>
         <nav>
           <div class="logo">
-            <a href="#">Logo</a>
+            <a href="/index.html">Logo</a>
           </div>
           <ul class="nav-links">
             <li><a href="#home">Accueil</a></li>
@@ -58,9 +53,11 @@
         <a href="#booking" class="cta-btn">Réserver maintenant</a><br/><br/><br/>
         <div id="g_id_onload"
             data-context="signin"
+            data-client_id="994469700771-105vvgfbiktrrde40324g0m4vguloqbc.apps.googleusercontent.com"
             data-ux_mode="popup"
             data-callback="handleCredentialResponse"
-            data-auto_prompt="false">
+            data-auto_prompt="false"
+            data-scope="https://www.googleapis.com/auth/calendar.readonly">
         </div>
         <div class="g_id_signin"
             data-type="standard"
@@ -73,7 +70,6 @@
     
     <button id="signout-btn" style="display: none;">Se déconnecter</button>
     <p id="user-info"></p><br/><br/>
-        <button id="signout-button">Se déconnecter</button>
     </section>
 
     <section>
@@ -173,11 +169,13 @@
             </div>
 
             <div class="form-group">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m-9 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <input type="date" id="date" name="date" required aria-label="date">
-            </div>
+                <label for="date" class="input-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="calendar-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m-9 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <input type="date" id="date" name="date" required class="date-input" onchange="handleDateChange()" min="" placeholder=""/>
+                </label>
+            </div>     
 
             <div class="form-group">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -214,7 +212,7 @@
 
     <section id="contact">
         <h2>Contactez-nous</h2>
-        <form action="/send-message" method="POST">
+        <form action="sendmail.php" method="POST">
             <div class="form-group">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7z" />

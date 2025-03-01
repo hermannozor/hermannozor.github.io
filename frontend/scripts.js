@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
 // Récupérer l'élément burger et le menu
 const burger = document.getElementById('burger-menu');
 const menu = document.querySelector('nav ul');
@@ -110,29 +111,6 @@ function initClient() {
     });
 }
 
-// Récupérer les événements du calendrier
-function listEvents() {
-    gapi.client.calendar.events.list({
-        calendarId: 'primary',
-        timeMin: (new Date()).toISOString(),
-        maxResults: 10,
-        singleEvents: true,
-        orderBy: 'startTime',
-    }).then(response => {
-        const events = response.result.items;
-        if (events.length > 0) {
-            console.log('Prochains événements :');
-            events.forEach(event => {
-                console.log(`${event.summary} (${event.start.dateTime || event.start.date})`);
-            });
-        } else {
-            console.log('Aucun événement trouvé.');
-        }
-    }).catch(error => {
-        console.error("Erreur lors de la récupération des événements :", error);
-    });
-}
-
 //Système de notification après la soumission du formulaire de réservation
 function handleBookingSubmit(event) {
     event.preventDefault();
@@ -162,10 +140,12 @@ const userInfo = document.getElementById("user-info");
 
 // Fonction appelée après connexion
 function handleCredentialResponse(response) {
+    const accessToken = response.credential; // Assurez-vous que ce champ est disponible
+    localStorage.setItem('google_access_token', accessToken);
     console.log("Jeton reçu :", response.credential);
 
     // Envoyer le jeton au backend pour validation
-    fetch("http://localhost:3000/verify-token", {
+    fetch("https://smartmovepro.fr/verify-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id_token: response.credential })
@@ -197,3 +177,90 @@ signOutBtn.addEventListener("click", () => {
     signOutBtn.style.display = "none";
     alert("Déconnecté !");
 });
+
+// Récupérer les événements du calendrier
+  function listEvents(date) {
+    console.log("🔎 gapi.client:", gapi.client);
+    console.log("🔎 gapi.client.calendar:", gapi.client ? gapi.client.calendar : "gapi.client est undefined");
+
+    if (!gapi.client || !gapi.client.calendar) {
+        console.error("Google API Client n'est pas chargé ou `calendar` est indisponible !");
+        return;
+    }
+
+    gapi.client.calendar.events.list({
+        'calendarId': 'primary',
+        'timeMin': new Date(date).toISOString(),
+        'timeMax': new Date(new Date(date).setHours(23, 59, 59)).toISOString(),
+        'singleEvents': true,
+        'orderBy': 'startTime'
+    }).then(function(response) {
+        var events = response.result.items;
+        if (events.length > 0) {
+            console.log('Upcoming events:', events);
+        } else {
+            console.log('No events found.');
+        }
+    }).catch(error => {
+        console.error("Erreur lors de la récupération des événements :", error);
+    });
+}
+
+
+function handleDateChange() {
+    const dateInput = document.getElementById('date');
+    const selectedDate = dateInput.value;
+    const selectedDay = new Date(selectedDate).getDay(); // 0 = Dimanche, 1 = Lundi, ..., 6 = Samedi
+    
+    if (selectedDay >= 1 && selectedDay <= 4) { // Bloque lundi (1) à jeudi (4)
+        alert("⚠️ Sélection invalide ! \nLes réservations sont disponibles le vendredi soir, ainsi que toute la journée du samedi et du dimanche. \nPour une réservation en soirée en semaine, veuillez nous contacter via notre formulaire. \nMerci pour votre compréhension !");
+        dateInput.value = ""; // Réinitialise la sélection
+        return;
+    }
+    
+    console.log("Date value:", selectedDate);
+    if (selectedDate) {
+        fetch('https://smartmovepro.fr/get-events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('google_access_token')}`,
+            },
+            body: JSON.stringify({ date: selectedDate }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Événements récupérés:", data);
+        })
+        .catch(error => {
+            console.error("Erreur:", error);
+        });
+    }
+}
+document.getElementById('date').addEventListener('change', handleDateChange);
+    
+
+// Met à jour l'attribut 'min' avec la date du jour pour empêcher la sélection des dates passées
+document.getElementById("date").setAttribute("min", new Date().toISOString().split("T")[0]);
+
+function initGoogleAPI() {
+    console.log("ça passe dans initGoogleAPI");
+    gapi.load('client:auth2', () => {
+        gapi.client.init({
+            apiKey: window.CONFIG.GOOGLE_API_KEY,
+            clientId: window.CONFIG.GOOGLE_CLIENT_ID,
+            discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
+            scope: "https://www.googleapis.com/auth/calendar.readonly"
+        }).then(() => {
+            console.log("✅ Google API chargé avec succès !");
+            document.getElementById("date").disabled = false; // Active l'input date
+            return gapi.client.load('calendar', 'v3');
+        }).catch(error => {
+            console.error("❌ Erreur lors du chargement de Google API", error);
+        });
+    });
+}
+
+  window.onload = function () {
+    document.querySelectorAll("form").forEach(form => form.reset());
+  };

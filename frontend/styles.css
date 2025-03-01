@@ -392,6 +392,7 @@ header {
     border-radius: 5px;
     padding: 10px;
     background-color: #f9f9f9;
+    width: 90%; 
 }
 
 .form-group input {
@@ -430,6 +431,7 @@ header {
 .form-container button:hover {
     background-color: #444;
 }
+
 
 /* Debut form contact */
 #contact {
