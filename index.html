@@ -27,9 +27,11 @@
     
     <header>
         <nav>
-          <div class="logo">
-            <a href="/index.html">Logo</a>
-          </div>
+        <div class="logo">
+          <a href="/index.html">
+            <img src="/frontend/images/loo.jpg" alt="Logo">
+          </a>
+        </div>
           <ul class="nav-links">
             <li><a href="#home">Accueil</a></li>
             <li><a href="#services">Services</a></li>
@@ -51,6 +53,7 @@
         <p>Des trajets confortables et fiables, où que vous soyez.</p>
         <br/><br/>
         <a href="#booking" class="cta-btn">Réserver maintenant</a><br/><br/><br/>
+        <!--
         <div id="g_id_onload"
             data-context="signin"
             data-client_id="994469700771-105vvgfbiktrrde40324g0m4vguloqbc.apps.googleusercontent.com"
@@ -67,9 +70,11 @@
             data-shape="rectangular"
             data-logo_alignment="left">
         </div>
-    
-    <button id="signout-btn" style="display: none;">Se déconnecter</button>
-    <p id="user-info"></p><br/><br/>
+        
+        <button id="signout-btn" style="display: none;">Se déconnecter</button>
+        <p id="user-info"></p><br/><br/>
+        -->
+
     </section>
 
     <section>
@@ -168,15 +173,14 @@
                 <input type="text" id="destination" name="destination" placeholder="Destination" required>
             </div>
 
-            <div class="form-group">
-                <label for="date" class="input-wrapper">
+         <div class="form-group">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="calendar-icon">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m-9 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                     <input type="date" id="date" name="date" required class="date-input" onchange="handleDateChange()" min="" placeholder=""/>
-                </label>
-            </div>     
+            </div>
             
+
 
             <div class="form-group">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -246,15 +250,6 @@
         <p>&copy; 2025 Votre Chauffeur Privé. Tous droits réservés.</p>
     </footer>
 
-    <script>
-        const buttons = document.querySelectorAll('.toggle-testimonial');
-    buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        const text = this.nextElementSibling;
-        text.style.display = text.style.display === 'block' ? 'none' : 'block';
-    });
-});
-    </script>
  <script>
         function handleDateChange() {
         const dateInput = document.getElementById('date');

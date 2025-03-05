@@ -4,18 +4,6 @@ const API_KEY = window.CONFIG.GOOGLE_API_KEY;
 const SCOPES = window.CONFIG.GOOGLE_SCOPES;
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('.toggle-testimonial');
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const text = this.nextElementSibling;
-            text.style.display = text.style.display === 'block' ? 'none' : 'block';
-        });
-    });
-});
-
-
-
 // Récupérer l'élément burger et le menu
 const burger = document.getElementById('burger-menu');
 const menu = document.querySelector('nav ul');
@@ -122,7 +110,7 @@ function handleCredentialResponse(response) {
 }
 
 // Charger Google Identity Service
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     // Injecter dynamiquement le CLIENT_ID dans l'élément g_id_onload
     const gIdOnload = document.getElementById("g_id_onload");
     gIdOnload.setAttribute("data-client_id", window.CONFIG.GOOGLE_CLIENT_ID);
@@ -162,7 +150,7 @@ signOutBtn.addEventListener("click", () => {
     }).catch(error => {
         console.error("Erreur lors de la récupération des événements :", error);
     });
-}
+}*/
 
 
 
@@ -190,23 +178,23 @@ function initGoogleAPI() {
   window.onload = function () {
     document.querySelectorAll("form").forEach(form => form.reset());
   };
+  
+  //toggle-testimonial
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".toggle-testimonial");
 
-
-    //toggle-testimonial
-    document.addEventListener("DOMContentLoaded", function () {
-        const buttons = document.querySelectorAll(".toggle-testimonial");
-    
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const testimonialText = this.nextElementSibling;
-                
-                if (testimonialText.style.display === "none" || testimonialText.style.display === "") {
-                    testimonialText.style.display = "block";
-                    this.textContent = "Masquer le témoignage";
-                } else {
-                    testimonialText.style.display = "none";
-                    this.textContent = "Voir le témoignage";
-                }
-            });
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            const testimonialText = this.nextElementSibling;
+            
+            if (testimonialText.style.display === "none" || testimonialText.style.display === "") {
+                testimonialText.style.display = "block";
+                this.textContent = "Masquer le témoignage";
+            } else {
+                testimonialText.style.display = "none";
+                this.textContent = "Voir le témoignage";
+            }
         });
     });
+});
+
