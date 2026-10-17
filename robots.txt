@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /merci.html
+Disallow: /merci_en.html
+Disallow: /404.html
+Disallow: /404_en.html
+Disallow: /chatbot.html
+Disallow: /contact.php
+
+Sitemap: https://smartmovepro.fr/sitemap.xml
